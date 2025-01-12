@@ -1,0 +1,46 @@
+//- views/index.pug
+doctype html
+html
+    head
+        title Tạo QR Code
+        link(rel="stylesheet", href="/styles.css")
+        style.
+            .color-picker {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            input[type="color"] {
+                width: 60px;
+                height: 40px;
+                padding: 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            input[type="color"]::-webkit-color-swatch-wrapper {
+                padding: 0;
+            }
+            input[type="color"]::-webkit-color-swatch {
+                border: none;
+                border-radius: 4px;
+            }
+    body
+        h1 Tạo QR Code
+        form(action="/generate", method="POST", enctype="multipart/form-data")
+            div
+                label(for="url") Nhập URL:
+                input(type="url", name="url", id="url", required=true, placeholder="https://example.com")
+            div.color-picker
+                label(for="color") Chọn màu QR code:
+                input(type="color", name="color", id="color", value="#000000")
+            div
+                label(for="logo") Chọn logo (tùy chọn):
+                input(type="file", name="logo", id="logo", accept="image/*")
+            div
+                label(for="size") Kích thước (px):
+                input(type="number", name="size", id="size", value="300", min="50", max="2000")
+                //- Giá trị mặc định là 300, có thể thay đổi tùy ý
+
+            div
+                button(type="submit") Generate
